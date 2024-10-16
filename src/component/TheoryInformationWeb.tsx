@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, Pressable, StyleSheet } from 'react-native';
-
-// Importa Quill solo para web
-import ReactQuill from 'react-quill'; // Importa ReactQuill directamente
-import 'react-quill/dist/quill.snow.css'; // Importa los estilos de Quill
-import { TheoryService } from '../services/TheoryService';
+import { ScrollView, View, Text, Pressable, StyleSheet, Platform } from 'react-native';
 import RenderHTML from 'react-native-render-html';
 import CustomHeader from './CustomHeader';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { TheoryService } from '../services/TheoryService';
+
+// Importa Quill solo para web
+let ReactQuill: any;
+if (Platform.OS === 'web') {
+    ReactQuill = require('react-quill').default; // Importa ReactQuill solo en web
+    require('react-quill/dist/quill.snow.css'); // Importa los estilos de Quill
+}
 
 interface TheoryInformationProps {
     text: string | null | undefined
@@ -16,6 +19,10 @@ interface TheoryInformationProps {
 const TheoryInformationWeb: React.FC<TheoryInformationProps> = ({ text }) => {
     const [content, setContent] = useState('Aquí iría el texto inicial'); // Contenido actual
     const [isEditing, setIsEditing] = useState(false); // Controla el estado de edición
+
+    if (Platform.OS !== 'web') {
+        return null; // O devuelve un componente vacío o algún mensaje
+      }
 
     useEffect(() => {
         if (text) {
@@ -39,12 +46,14 @@ const TheoryInformationWeb: React.FC<TheoryInformationProps> = ({ text }) => {
             <View style={styles.content}>
                 {isEditing ? (
                     <>
+                        {ReactQuill && (
                         <ReactQuill
                             value={content}
                             onChange={handleContentChange}
                             theme="snow" // Tema básico de Quill
                             placeholder="Escribe el marco teórico aquí..."
                         />
+                    )}
                         <Pressable style={styles.button} onPress={() => handleSave(content)}>
                             <Icon name={'content-save'} size={20} color="#fff" />
                             <Text style={styles.buttonText}> {"Guardar"}</Text>

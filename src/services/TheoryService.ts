@@ -28,6 +28,8 @@ export const TheoryService = {
 
   async saveTheory(id: number, text: string): Promise<TheoryRequest> {
     const request = URL + id;
+    console.log("Request: ", request);    
+    console.log("Id: ", id, "text: ", text);    
     const response = await fetch(request, {
       method: "PUT",
       headers: {

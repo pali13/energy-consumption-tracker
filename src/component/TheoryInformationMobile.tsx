@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Importar íconos
 import RenderHTML from 'react-native-render-html';
 import { TheoryService } from '../services/TheoryService';
+import CustomHeader from './CustomHeader';
 
 interface TheoryInformationProps {
     text: string | null | undefined
@@ -24,11 +25,7 @@ const TheoryInformationMobile: React.FC<TheoryInformationProps> = ({ text }) => 
 
     const handleSave = () => {
         setIsEditing(!isEditing)
-        richText.current?.getContentHtml().then((htmlContent) => {
-            setContent(htmlContent);
-            setIsEditing(false);
-            TheoryService.saveTheory(1, htmlContent);
-        });
+        TheoryService.saveTheory(1, content);
     };
 
     const handleContentChange = (html: string) => {
@@ -38,8 +35,8 @@ const TheoryInformationMobile: React.FC<TheoryInformationProps> = ({ text }) => 
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={styles.container}>
+                <CustomHeader title={'Marco Teórico'} logo={require('../../assets/images/logo.jpg')} />
                 <View style={styles.content}>
-                    <Text style={styles.title}>Marco Teórico</Text>
                     {isEditing ? (
                         <View style={{ flex: 1 }}>
                             <RichEditor
@@ -151,7 +148,6 @@ const styles = StyleSheet.create({
     },
     textScroll: {
         flex: 1,
-        maxHeight: 800, // Tamaño máximo para visualizar el contenido
     }
 });
 
