@@ -29,7 +29,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ children }
 
     // Función para iniciar la conexión WebSocket
     const connectWebSocket = () => {
-        const socket = new WebSocket('ws://192.168.1.7:8080/ws/consumption');
+        const socket = new WebSocket('ws://192.168.1.27:8080/ws/consumption');
         socket.onopen = () => {
             console.log('WebSocket connection opened');
             if (userId) {

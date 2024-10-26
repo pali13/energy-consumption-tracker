@@ -7,6 +7,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Importar
 import RenderHTML from 'react-native-render-html';
 import { TheoryService } from '../services/TheoryService';
 import CustomHeader from './CustomHeader';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['TNodeChildrenRenderer: Support for defaultProps']);
 
 interface TheoryInformationProps {
     text: string | null | undefined

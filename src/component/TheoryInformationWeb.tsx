@@ -4,25 +4,23 @@ import RenderHTML from 'react-native-render-html';
 import CustomHeader from './CustomHeader';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TheoryService } from '../services/TheoryService';
-
-// Importa Quill solo para web
-let ReactQuill: any;
-if (Platform.OS === 'web') {
-    ReactQuill = require('react-quill').default; // Importa ReactQuill solo en web
-    require('react-quill/dist/quill.snow.css'); // Importa los estilos de Quill
-}
+import 'react-quill/dist/quill.snow.css';
 
 interface TheoryInformationProps {
     text: string | null | undefined
 }
 
 const TheoryInformationWeb: React.FC<TheoryInformationProps> = ({ text }) => {
+    // Importa Quill solo para web
+    let ReactQuill: any;
+    if (Platform.OS == 'web') {
+        ReactQuill = require('react-quill'); // Importa ReactQuill solo en web
+    } else {
+        return null; // O devuelve un componente vacío o algún mensaje
+    }
+
     const [content, setContent] = useState('Aquí iría el texto inicial'); // Contenido actual
     const [isEditing, setIsEditing] = useState(false); // Controla el estado de edición
-
-    if (Platform.OS !== 'web') {
-        return null; // O devuelve un componente vacío o algún mensaje
-      }
 
     useEffect(() => {
         if (text) {
@@ -46,21 +44,21 @@ const TheoryInformationWeb: React.FC<TheoryInformationProps> = ({ text }) => {
             <View style={styles.content}>
                 {isEditing ? (
                     <>
-                        {ReactQuill && (
-                        <ReactQuill
-                            value={content}
-                            onChange={handleContentChange}
-                            theme="snow" // Tema básico de Quill
-                            placeholder="Escribe el marco teórico aquí..."
-                        />
-                    )}
+                        {/* {ReactQuill && ( */}
+                            <ReactQuill
+                                value={content}
+                                onChange={handleContentChange}
+                                theme="snow" // Tema básico de Quill
+                                placeholder="Escribe el marco teórico aquí..."
+                            />
+                        {/* )} */}
                         <Pressable style={styles.button} onPress={() => handleSave(content)}>
                             <Icon name={'content-save'} size={20} color="#fff" />
                             <Text style={styles.buttonText}> {"Guardar"}</Text>
-                        </Pressable>                    </>
+                        </Pressable>
+                    </>
                 ) : (
                     <View>
-
                         <RenderHTML
                             contentWidth={300} // Ajusta este valor a tu diseño
                             source={{ html: content }}
