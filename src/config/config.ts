@@ -6,6 +6,6 @@ import devEnv from "../environments/environment";
 import prodEnv from "../environments/environment.prod";
 
 // const ENV = Constants.manifest?.releaseChannel === "production" ? prodEnv : devEnv;
-const ENV = "https://energy-consumption-tracker.onrender.com";
+const ENV = "https://energy-consumption-tracker.onrender.com:8080";
 
 export default ENV;
