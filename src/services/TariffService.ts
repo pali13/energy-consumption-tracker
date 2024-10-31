@@ -1,8 +1,8 @@
 import { Tariff } from "../class/tariff";
 import { TariffRequest } from "../class/tariffRequest";
-import API_URL from "../config/config";
+import ENV from "../config/config";
 
-const URL = API_URL + "/api/users/";
+const URL = ENV + "/api/users/";
 
 export const TariffService = {
 

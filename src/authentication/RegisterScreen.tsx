@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Pressable, Image, StyleSheet, Text } from 'react-native';
+import { View, TextInput, Pressable, Image, StyleSheet, Text, Platform } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import api from '../services/api';
 import { RootStackParamList } from '../types/types';
@@ -49,7 +49,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <View>
       <CustomHeader title={'Registro de Usuario'} />
-      <Image source={require('../../assets/images/logo.jpg')} style={styles.logo} />
+      <Image source={require('../../assets/images/logo.jpg')} style={Platform.OS == 'web' ? styles.logoWeb : styles.logo} />
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <TextInput
           placeholder="Nombre de usuario"
@@ -123,6 +123,14 @@ const styles = StyleSheet.create({
   logo: {
     width: '60%',
     height: 200,
+    marginTop: 30,
+    marginBottom: 30,
+    marginRight: 'auto',
+    marginLeft: 'auto'
+  },
+  logoWeb: {
+    width: '20%',
+    height: 300,
     marginTop: 30,
     marginBottom: 30,
     marginRight: 'auto',

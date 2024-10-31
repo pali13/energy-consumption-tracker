@@ -1,9 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import API_URL from "../config/config";
+import ENV from "../config/config";
 
 export const loginUser = async (username: string, password: string) => {
-  const response = await axios.post(`${API_URL}/api/auth/signin`, {
+  const response = await axios.post(`${ENV}/api/auth/signin`, {
     username,
     password,
   });
@@ -19,7 +19,7 @@ export const checkAuthStatus = async (userId: number) => {
   if (userStorage) {
     return JSON.parse(userStorage);
   } else {
-    const URL = `${API_URL}/api/auth/${userId}`;
+    const URL = `${ENV}/api/auth/${userId}`;
     const response = await axios.get(URL);
     const user = response.data;
     if (user) {

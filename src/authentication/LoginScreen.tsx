@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, Pressable, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, TextInput, Pressable, Text, StyleSheet, Image, ScrollView, Platform } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types/types';
 import { FontAwesome } from '@expo/vector-icons'; // Puedes usar iconos de FontAwesome o cualquier otra librería
@@ -40,7 +40,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <CustomHeader title={'Iniciar Sesión'} />
-            <Image source={require('../../assets/images/logo.jpg')} style={styles.logo} />
+            <Image source={require('../../assets/images/logo.jpg')} style={Platform.OS == 'web' ? styles.logoWeb : styles.logo} />
             <View style={styles.container}>
                 <TextInput
                     placeholder="Nombre de usuario"
@@ -140,6 +140,15 @@ const styles = StyleSheet.create({
         marginRight: 'auto',
         marginLeft: 'auto'
     },
+    logoWeb: {
+        width: '25%',
+        height: 350,
+        marginTop: 30,
+        marginBottom: 30,
+        marginRight: 'auto',
+        marginLeft: 'auto'
+
+    }
 });
 
 export default LoginScreen;

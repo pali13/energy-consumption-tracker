@@ -1,8 +1,8 @@
 import { Theory } from "../class/theory";
 import { TheoryRequest } from "../class/theoryRequest";
-import API_URL from "../config/config";
+import ENV from "../config/config";
 
-const URL = API_URL + "/api/theory/";
+const URL = ENV + "/api/theory/";
 
 export const TheoryService = {
   async getTheory(id: number): Promise<Theory | null> {
