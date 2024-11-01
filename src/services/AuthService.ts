@@ -5,8 +5,8 @@ import ENV from "../config/config";
 export const loginUser = async (username: string, password: string) => {
   const response = await axios.post(
     `${ENV}/api/auth/signin`,
-    { username, password },
-    { withCredentials: true }
+    { username, password }
+    // { withCredentials: true }
   );
   return response.data; // Aquí asumir que response.data contiene la información del usuario
 };
