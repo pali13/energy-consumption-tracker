@@ -29,7 +29,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ children }
 
     // Función para iniciar la conexión WebSocket
     const connectWebSocket = () => {
-        const socket = new WebSocket('ws://https://energy-consumption-tracker.onrender.com/ws/consumption');
+        const socket = new WebSocket('wss://energy-consumption-tracker.onrender.com/ws/consumption');
         socket.onopen = () => {
             console.log('WebSocket connection opened');
             if (userId) {

@@ -8,6 +8,7 @@ import CustomHeader from '../component/CustomHeader';
 import { FontAwesome } from '@expo/vector-icons';
 import CustomDatePicker from '../component/CustomDatePicker';
 import { parse } from 'date-fns';
+import Spinner from "../component/elements/Spinner";
 
 type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Register'>;
 
@@ -21,6 +22,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [birthDate, setBirthDate] = useState<string | null>(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(prevState => !prevState);
@@ -28,23 +30,31 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
 
   const handleRegister = async () => {
     try {
+      setLoading(true);
       const response = await api.post('/api/auth/signup', {
         "username": username,
         "email": email,
         "password": password,
         "birthDate": birthDate
       });
-      navigation.navigate('Login');
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        console.error('Error al registrar usuario:', error.response.data);
-      } else {
+        setLoading(false);
+        navigation.navigate('Login');
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response) {
+          setLoading(false);
+          console.error('Error al registrar usuario:', error.response.data);
+        } else {
+        setLoading(false);
         console.error('Error al registrar usuario:', error);
       }
     }
   };
 
   const formattedDate = birthDate ? parse(birthDate, 'yyyy-MM-dd', new Date()) : null;
+
+  if (loading) {
+    return <Spinner message={"Registrando usuario..."} />;
+  }
 
   return (
     <View>
