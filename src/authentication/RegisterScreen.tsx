@@ -29,10 +29,10 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   const handleRegister = async () => {
     try {
       const response = await api.post('/api/auth/signup', {
-        username,
-        email,
-        password,
-        birthDate,
+        "username": username,
+        "email": email,
+        "password": password,
+        "birthDate": birthDate
       });
       navigation.navigate('Login');
     } catch (error) {
