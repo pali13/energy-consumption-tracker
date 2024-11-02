@@ -42,7 +42,7 @@ const TheoryInformationMobile: React.FC<TheoryInformationProps> = ({ text }) => 
             <ScrollView contentContainerStyle={styles.container}>
                 <CustomHeader title={'Marco Teórico'} logo={require('../../assets/images/logo.jpg')} />
                 <View style={styles.content}>
-                    {isEditing ? (
+                    {isEditing  && userRole == 'ROLE_ADMIN' ? (
                         <View style={{ flex: 1 }}>
                             <RichEditor
                                 ref={richText}

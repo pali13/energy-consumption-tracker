@@ -5,6 +5,7 @@ import CustomHeader from './CustomHeader';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TheoryService } from '../services/TheoryService';
 import 'react-quill/dist/quill.snow.css';
+import { useAuth } from '../context/AuthContext';
 
 interface TheoryInformationProps {
     text: string | null | undefined
@@ -21,6 +22,7 @@ const TheoryInformationWeb: React.FC<TheoryInformationProps> = ({ text }) => {
 
     const [content, setContent] = useState('Aquí iría el texto inicial'); // Contenido actual
     const [isEditing, setIsEditing] = useState(false); // Controla el estado de edición
+    const { userRole } = useAuth();
 
     useEffect(() => {
         if (text) {
