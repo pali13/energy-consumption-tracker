@@ -5,7 +5,7 @@ import HomeScreen from './HomeScreen';
 import TariffScreen from './TariffScreen';
 import TheoryInformation from './TheoryInformation';
 import DaysHistory from './DaysHistory';
-import Icon from 'react-native-vector-icons/Ionicons'; // Puedes usar la librería que prefieras
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Puedes usar la librería que prefieras
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +14,7 @@ const BottomTabNavigator: React.FC = () => {
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{
         tabBarIcon: ({ color, size }) => (
-          <Icon name="home-outline" color={color} size={size} />
+          <Icon name="home-bulb-outline" color={color} size={size} />
         ),
       }} />
       <Tab.Screen name="Aparatos" component={ApplianceScreen} 
@@ -26,21 +26,21 @@ const BottomTabNavigator: React.FC = () => {
       <Tab.Screen name="Tarifas" component={TariffScreen} 
       options={{
         tabBarIcon: ({ color, size }) => (
-          <Icon name="coins" color={color} size={size} />
+          <Icon name="currency-usd" color={color} size={size} />
         ),
       }}
       />
       <Tab.Screen name="Consumo" component={DaysHistory} 
       options={{
         tabBarIcon: ({ color, size }) => (
-          <Icon name="graph" color={color} size={size} />
+          <Icon name="chart-box-outline" color={color} size={size} />
         ),
       }}
       />
       <Tab.Screen name="Teoría" component={TheoryInformation} 
       options={{
         tabBarIcon: ({ color, size }) => (
-          <Icon name="open-book" color={color} size={size} />
+          <Icon name="book-open-variant-outline" color={color} size={size} />
         ),
       }}
       />
