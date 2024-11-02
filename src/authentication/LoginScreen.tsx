@@ -46,7 +46,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
     };
 
     if (loading) {
-        return <Spinner message={"Registrando usuario..."} />;
+        return <Spinner message={"Iniciando sesión..."} />;
     }
 
     return (

@@ -45,16 +45,14 @@ const TheoryInformationWeb: React.FC<TheoryInformationProps> = ({ text }) => {
         <ScrollView style={styles.container}>
             <CustomHeader title={'Marco Teórico'} logo={require('../../assets/images/logo.jpg')} />
             <View style={styles.content}>
-                {isEditing && userRole == 'ROLE_ADMIN' ? (
+                {isEditing ? (
                     <>
-                        {/* {ReactQuill && ( */}
-                            <ReactQuill
-                                value={content}
-                                onChange={handleContentChange}
-                                theme="snow" // Tema básico de Quill
-                                placeholder="Escribe el marco teórico aquí..."
-                            />
-                        {/* )} */}
+                        <ReactQuill
+                            value={content}
+                            onChange={handleContentChange}
+                            theme="snow" // Tema básico de Quill
+                            placeholder="Escribe el marco teórico aquí..."
+                        />
                         <Pressable style={styles.button} onPress={() => handleSave(content)}>
                             <Icon name={'content-save'} size={20} color="#fff" />
                             <Text style={styles.buttonText}> {"Guardar"}</Text>
@@ -66,10 +64,12 @@ const TheoryInformationWeb: React.FC<TheoryInformationProps> = ({ text }) => {
                             contentWidth={300} // Ajusta este valor a tu diseño
                             source={{ html: content }}
                         />
-                        <Pressable style={styles.button} onPress={() => setIsEditing(!isEditing)}>
+                        { userRole == 'ROLE_ADMIN' && (
+                            <Pressable style={styles.button} onPress={() => setIsEditing(!isEditing)}>
                             <Icon name={'pencil'} size={20} color="#fff" />
                             <Text style={styles.buttonText}> {"Editar"}</Text>
                         </Pressable>
+                        )}
                     </View>
                 )}
             </View>
