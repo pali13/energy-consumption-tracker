@@ -25,6 +25,7 @@ const TheoryInformationWeb: React.FC<TheoryInformationProps> = ({ text }) => {
     const { userRole } = useAuth();
 
     useEffect(() => {
+        console.log("Theory web");
         if (text) {
             setContent(text);
         }
@@ -44,7 +45,7 @@ const TheoryInformationWeb: React.FC<TheoryInformationProps> = ({ text }) => {
         <ScrollView style={styles.container}>
             <CustomHeader title={'Marco Teórico'} logo={require('../../assets/images/logo.jpg')} />
             <View style={styles.content}>
-                {isEditing ? (
+                {isEditing && userRole == 'ROLE_ADMIN' ? (
                     <>
                         {/* {ReactQuill && ( */}
                             <ReactQuill
