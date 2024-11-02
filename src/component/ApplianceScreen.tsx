@@ -152,29 +152,29 @@ const ApplianceScreen: React.FC = () => {
                     onRequestClose={() => setIsFormOpen(false)}
                 >
                     <View style={styles.modalView}>
-                        <Text style={styles.modalTitle}>{isEditMode ? 'Edit Appliance' : 'Add Appliance'}</Text>
+                        <Text style={styles.modalTitle}>{isEditMode ? 'Editar Aparato' : 'Agregar Aparato'}</Text>
                         <TextInput
                             style={styles.input}
-                            placeholder="Name"
+                            placeholder="Nombre"
                             value={isEditMode ? selectedAppliance.name : newAppliance.name}
                             onChangeText={(value) => handleInputChange('name', value)}
                         />
                         <TextInput
                             style={styles.input}
-                            placeholder="Type"
+                            placeholder="Tipo del Dispositivo"
                             value={isEditMode ? selectedAppliance.type : newAppliance.type}
                             onChangeText={(value) => handleInputChange('type', value)}
                         />
                         <TextInput
                             style={styles.input}
-                            placeholder="Power Rating"
+                            placeholder="Potencia por hora"
                             keyboardType="numeric"
                             value={isEditMode ? String(selectedAppliance.powerRating) : String(newAppliance.powerRating)}
                             onChangeText={(value) => handleInputChange('powerRating', value)}
                         />
                         <TextInput
                             style={styles.input}
-                            placeholder="Location"
+                            placeholder="Ubicación"
                             value={isEditMode ? selectedAppliance.location : newAppliance.location}
                             onChangeText={(value) => handleInputChange('location', value)}
                         />
