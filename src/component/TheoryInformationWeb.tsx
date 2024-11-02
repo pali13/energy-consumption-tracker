@@ -23,9 +23,9 @@ const TheoryInformationWeb: React.FC<TheoryInformationProps> = ({ text }) => {
     const [content, setContent] = useState('Aquí iría el texto inicial'); // Contenido actual
     const [isEditing, setIsEditing] = useState(false); // Controla el estado de edición
     const { userRole } = useAuth();
+    console.log("User role: ", userRole);
 
     useEffect(() => {
-        console.log("Theory web");
         if (text) {
             setContent(text);
         }
