@@ -22,6 +22,9 @@ const TheoryInformationMobile: React.FC<TheoryInformationProps> = ({ text }) => 
     const richText = useRef<RichEditor>(null); // Referencia al editor
     const { userRole } = useAuth();
 
+    console.log("User Role: ", userRole);
+    
+
     useEffect(() => {
         if (text) {
             setContent(text);
