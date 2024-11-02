@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Pressable, Image, StyleSheet, Text, Platform } from 'react-native';
+import { View, TextInput, Pressable, Image, StyleSheet, Text, Platform, Dimensions } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import api from '../services/api';
 import { RootStackParamList } from '../types/types';
@@ -16,6 +16,9 @@ type Props = {
   navigation: RegisterScreenNavigationProp;
 };
 
+const { width } = Dimensions.get('window');
+const aspectRatio = 0.75; // Por ejemplo, para una proporción de 4:3
+
 const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -23,6 +26,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   const [birthDate, setBirthDate] = useState<string | null>(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
+  
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(prevState => !prevState);

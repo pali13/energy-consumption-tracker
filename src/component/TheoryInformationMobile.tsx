@@ -1,6 +1,6 @@
 import { FontAwesome } from '@expo/vector-icons';
 import React, { useState, useRef, useEffect } from 'react';
-import { ScrollView, View, Text, Pressable, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, Pressable, StyleSheet, Platform } from 'react-native';
 import { RichEditor, RichToolbar, actions } from 'react-native-pell-rich-editor';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Importar íconos
@@ -8,6 +8,7 @@ import RenderHTML from 'react-native-render-html';
 import { TheoryService } from '../services/TheoryService';
 import CustomHeader from './CustomHeader';
 import { LogBox } from 'react-native';
+import { useAuth } from '../context/AuthContext';
 
 LogBox.ignoreLogs(['TNodeChildrenRenderer: Support for defaultProps']);
 
@@ -19,6 +20,7 @@ const TheoryInformationMobile: React.FC<TheoryInformationProps> = ({ text }) => 
     const [content, setContent] = useState('Acá va el texto'); // Contenido actual
     const [isEditing, setIsEditing] = useState(false); // Controla el estado de edición
     const richText = useRef<RichEditor>(null); // Referencia al editor
+    const { userRole } = useAuth();
 
     useEffect(() => {
         if (text) {
@@ -87,7 +89,7 @@ const TheoryInformationMobile: React.FC<TheoryInformationProps> = ({ text }) => 
                         </ScrollView>
                     )}
 
-                    {isEditing ?
+                    {isEditing && userRole == 'ROLE_ADMIN' ?
                         <Pressable style={styles.button} onPress={handleSave}>
                             <Icon name={'content-save'} size={20} color="#fff" />
                             <Text style={styles.buttonText}>{'Guardar'}</Text>
@@ -110,9 +112,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#3b5998',
         padding: 10,
-        borderRadius: 30,
+        borderRadius: 5,
         marginBottom: 10,
-        width: '35%',
+        width: '45%',
         justifyContent: 'center',
         alignSelf: 'flex-end',
         marginTop: 16,

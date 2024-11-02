@@ -1,10 +1,11 @@
-import React from 'react';
-import { View, TextInput, Pressable, Text, StyleSheet, Image, ScrollView, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, Pressable, Text, StyleSheet, Image, ScrollView, Platform, Dimensions } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types/types';
 import { FontAwesome } from '@expo/vector-icons'; // Puedes usar iconos de FontAwesome o cualquier otra librería
 import { useAuth } from '../context/AuthContext';
 import CustomHeader from '../component/CustomHeader';
+import Spinner from '../component/elements/Spinner';
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -12,22 +13,29 @@ interface Props {
     navigation: LoginScreenNavigationProp;
 }
 
+const { width } = Dimensions.get('window');
+const aspectRatio = 0.75; // Por ejemplo, para una proporción de 4:3
+
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
     const { login } = useAuth();
-    const [username, setUsername] = React.useState<string>('');
-    const [password, setPassword] = React.useState<string>('');
-    const [errorMessage, setErrorMessage] = React.useState('');
-    const [isPasswordVisible, setIsPasswordVisible] = React.useState<boolean>(false);
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+    const [loading, setLoading] = useState(false);
 
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(prevState => !prevState);
     };
 
     const handleLogin = async () => {
+        setLoading(true)
         const error = await login(username, password);
         if (error) {
+            setLoading(false)
             setErrorMessage(error);
         } else {
+            setLoading(false)
             setErrorMessage('');
             navigation.navigate('Home');
         }
@@ -36,6 +44,10 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
     const handleRegister = () => {
         navigation.navigate('Register');
     };
+
+    if (loading) {
+        return <Spinner message={"Registrando usuario..."} />;
+    }
 
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -133,16 +145,15 @@ const styles = StyleSheet.create({
         color: 'blue',
     },
     logo: {
-        width: '70%',
-        height: 250,
+        width: '75%',
         marginTop: 30,
         marginBottom: 30,
         marginRight: 'auto',
         marginLeft: 'auto'
     },
     logoWeb: {
-        width: '25%',
-        height: 350,
+        width: width * 0.3, 
+        height: (width * 0.3) * aspectRatio,
         marginTop: 30,
         marginBottom: 30,
         marginRight: 'auto',
