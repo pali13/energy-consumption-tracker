@@ -10,7 +10,10 @@ export const registerDailyConsumption = async (userId: number | null) => {
   }
   const appliances: Appliance[] = await getAppliances(userId);
 
-  const date = getTodayDate();
+  // const date = getTodayDate();
+
+  const currentTime = new Date();
+  const date = currentTime.toISOString().split("T")[0];
 
   for (const appliance of appliances) {
     const dailyConsumption: DailyConsumption = {
