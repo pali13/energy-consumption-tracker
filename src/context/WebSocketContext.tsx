@@ -75,7 +75,8 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ children }
                 wsocket.send(JSON.stringify({ userId, sessionId: sessionId.current, action: 'logout' })); // Enviar mensaje de logout
                 wsocket.close();
                 setWsocket(null); // Resetear wsocket a null cuando se desconecta
-                setWaitingws(false); // Ocultar el spinner cuando ws esté disponible
+                setWaitingws(false); 
+                isLoggingOut = false;
             }
         }
     };
