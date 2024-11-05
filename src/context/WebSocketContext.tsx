@@ -58,16 +58,14 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ children }
                 setLoading(false);
                 isLoggingOut = false;
             }
-        };
-        console.log("No llega?");
-        
+        };        
         setWsocket(socket);
     };
 
     // Función para desconectar el WebSocket
     const disconnectWebSocket = () => {
         if (isAuthenticated) {
-            setWaitingws(true);
+            // setWaitingws(true);
             const checkWebSocket = setInterval(() => {
                 console.log("WS: ", wsocket);
                 if (wsocket) {
@@ -76,7 +74,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ children }
                     wsocket.send(JSON.stringify({ userId, sessionId: sessionId.current, action: 'logout' })); // Enviar mensaje de logout
                     wsocket.close();
                     setWsocket(null); // Resetear wsocket a null cuando se desconecta
-                    setWaitingws(false); // Ocultar el spinner cuando ws esté disponible
+                    // setWaitingws(false); // Ocultar el spinner cuando ws esté disponible
                     isLoggingOut = false;
 
                     clearInterval(checkWebSocket); // Limpiar el intervalo cuando se haya desconectado
