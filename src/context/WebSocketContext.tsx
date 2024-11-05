@@ -59,6 +59,8 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ children }
                 isLoggingOut = false;
             }
         };
+        console.log("No llega?");
+        
         setWsocket(socket);
     };
 
