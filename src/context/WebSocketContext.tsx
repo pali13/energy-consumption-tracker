@@ -68,17 +68,15 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ children }
         if (isAuthenticated) {
             console.log("A2if: ");
             setWaitingws(true)
-            const checkWebSocket = setInterval(() => {
-                if (wsocket) {
-                    console.log("D2if ");
-                    isLoggingOut = true; // Indicamos que estamos en proceso de logout
-                    wsocket.send(JSON.stringify({ userId, sessionId: sessionId.current, action: 'logout' })); // Enviar mensaje de logout
-                    wsocket.close();
-                    setWsocket(null); // Resetear wsocket a null cuando se desconecta
-                    setWaitingws(false); // Ocultar el spinner cuando ws esté disponible
-                    clearInterval(checkWebSocket); // Limpiar el intervalo cuando se haya desconectado
-                }
-            }, 1000); // Verificar cada 100 ms (ajusta el tiempo según lo que necesites)
+            console.log("wS: ", wsocket);        
+            if (wsocket) {
+                console.log("D2if ");
+                isLoggingOut = true; // Indicamos que estamos en proceso de logout
+                wsocket.send(JSON.stringify({ userId, sessionId: sessionId.current, action: 'logout' })); // Enviar mensaje de logout
+                wsocket.close();
+                setWsocket(null); // Resetear wsocket a null cuando se desconecta
+                setWaitingws(false); // Ocultar el spinner cuando ws esté disponible
+            }
         }
     };
 
