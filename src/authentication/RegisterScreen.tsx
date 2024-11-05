@@ -62,7 +62,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View>
-      <CustomHeader title={'Registro de Usuario'} />
+      <CustomHeader title={'Registro de Usuario'} button={true}/>
       <Image source={require('../../assets/images/logo.jpg')} style={Platform.OS == 'web' ? styles.logoWeb : styles.logo} />
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <TextInput

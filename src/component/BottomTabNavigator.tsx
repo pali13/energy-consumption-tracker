@@ -5,7 +5,9 @@ import HomeScreen from './HomeScreen';
 import TariffScreen from './TariffScreen';
 import TheoryInformation from './TheoryInformation';
 import DaysHistory from './DaysHistory';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Puedes usar la librería que prefieras
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { FontAwesome } from '@expo/vector-icons';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +16,7 @@ const BottomTabNavigator: React.FC = () => {
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{
         tabBarIcon: ({ color, size }) => (
-          <Icon name="home-bulb-outline" color={color} size={size} />
+          <FontAwesome name={'home'} size={size} color={color} />
         ),
       }} />
       <Tab.Screen name="Aparatos" component={ApplianceScreen} 
@@ -40,7 +42,7 @@ const BottomTabNavigator: React.FC = () => {
       <Tab.Screen name="Teoría" component={TheoryInformation} 
       options={{
         tabBarIcon: ({ color, size }) => (
-          <Icon name="book-open-variant-outline" color={color} size={size} />
+          <FontAwesome name="book" color={color} size={size} />
         ),
       }}
       />

@@ -1,23 +1,41 @@
+import { FontAwesome } from '@expo/vector-icons';
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
+import { RootStackParamList } from '../types/types';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 
 type CustomHeaderProps = {
   title: string;
   logo?: any; // Puedes usar 'require' para las imágenes en React Native
+  button?: boolean;
 };
 
-const CustomHeader: React.FC<CustomHeaderProps> = ({ title, logo }) => {
+const CustomHeader: React.FC<CustomHeaderProps> = ({ title, logo, button }) => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>(); // Tipo de navegación
+
   return (
     <View style={styles.container}>
-      {logo ? (
+      {logo && button ? (
         <>
+          <Pressable onPress={() => navigation.navigate('Login')}>
+            <FontAwesome name={'chevron-circle-left'} size={30} color={"#3b5998"} />
+          </Pressable>
           <Text style={styles.title}>{title}</Text>
           <Image source={logo} style={styles.logo} />
+        </>
+      ) : button ? (
+        <>
+          <Pressable onPress={() => navigation.navigate('Login')}>
+            <FontAwesome name={'chevron-circle-left'} size={30} color={'#3b5998'} />
+          </Pressable>
+          <Text style={styles.title}>{title}</Text>
+          <div></div>
         </>
       ) : (
         <Text style={styles.title}>{title}</Text>
       )}
-    </View>
+
+    </View >
   );
 };
 
