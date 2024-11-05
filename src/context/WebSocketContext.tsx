@@ -3,7 +3,6 @@ import Spinner from '../component/elements/Spinner';
 import { useAuth } from './AuthContext';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-import { Text } from 'react-native';
 
 interface WebSocketContextProps {
     wsocket: WebSocket | null;
@@ -65,13 +64,17 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ children }
 
     // Función para desconectar el WebSocket
     const disconnectWebSocket = () => {
+        console.log("A1if: ", isAuthenticated);
         if (isAuthenticated) {
+            console.log("A2if: ");
             setWaitingws(true)
             if (wsocket) {
+                console.log("D2if ");
                 isLoggingOut = true; // Indicamos que estamos en proceso de logout
                 wsocket.send(JSON.stringify({ userId, sessionId: sessionId.current, action: 'logout' })); // Asegúrate de incluir sessionId aquí
                 wsocket.close();
                 setWsocket(null); // Resetear wsocket a null cuando se desconecta
+                console.log("AsetWai, ", waitingws);
                 setWaitingws(false); // Ocultar el spinner cuando ws esté disponible
             }
         }
@@ -80,7 +83,6 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ children }
     useEffect(() => {
         if (wsocket) {
             setWaitingws(false); // Ocultar el spinner cuando ws esté disponible
-        } else {
         }
     }, [wsocket]); // Observa los cambios en wsocket
 

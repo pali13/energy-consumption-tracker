@@ -1,8 +1,7 @@
 import React, { createContext, useState, useEffect, useContext, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loginUser, logoutUser, checkAuthStatus } from '../services/AuthService';
-import { Platform, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Platform } from 'react-native';
 
 interface AuthContextData {
     userId: number | null;
