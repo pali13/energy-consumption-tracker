@@ -67,9 +67,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({ children }
         if (isAuthenticated) {
             // setWaitingws(true);
             const checkWebSocket = setInterval(() => {
-                console.log("WS: ", wsocket);
                 if (wsocket) {
-                    console.log("Entra");
                     isLoggingOut = true; // Indicamos que estamos en proceso de logout
                     wsocket.send(JSON.stringify({ userId, sessionId: sessionId.current, action: 'logout' })); // Enviar mensaje de logout
                     wsocket.close();

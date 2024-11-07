@@ -20,10 +20,7 @@ const TheoryInformationMobile: React.FC<TheoryInformationProps> = ({ text }) => 
     const [content, setContent] = useState('Acá va el texto'); // Contenido actual
     const [isEditing, setIsEditing] = useState(false); // Controla el estado de edición
     const richText = useRef<RichEditor>(null); // Referencia al editor
-    const { userRole } = useAuth();
-
-    console.log("User Role: ", userRole);
-    
+    const { userRole } = useAuth();    
 
     useEffect(() => {
         if (text) {

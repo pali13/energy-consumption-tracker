@@ -16,8 +16,6 @@ export const saveConsumption = async (
   dailyConsumption: DailyConsumption
 ): Promise<DailyConsumption> => {
   const URL = `${ENV}/api/users/${userId}/consumptions`;
-  console.log("URL: ", URL);
-  console.log("dailyConsumption: ", dailyConsumption);
   const response = await axios.post(`${URL}`, dailyConsumption);
   return response.data;
 };
