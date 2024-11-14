@@ -2,7 +2,6 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { getTariff } from '../helpers/helpers';
 import { Tariff } from '../class/tariff';
-import { Text } from 'react-native';
 
 interface TariffContextProps {
   tariff: Tariff | null;

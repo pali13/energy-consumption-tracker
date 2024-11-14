@@ -2,7 +2,6 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Appliance } from '../class/appliance';
 import { getAppliances } from '../helpers/helpers';
-import { Text } from 'react-native';
 
 interface ApplianceContextProps {
   appliances: Appliance[];

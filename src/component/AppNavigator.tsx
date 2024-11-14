@@ -1,4 +1,3 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { useEffect } from "react";
 import LoginScreen from "../authentication/LoginScreen";
 import { registerDailyConsumption } from "../class/dailyConsumptionHelper";
@@ -6,7 +5,6 @@ import { useAuth } from "../context/AuthContext";
 import { createStackNavigator } from '@react-navigation/stack';
 import BottomTabNavigator from "./BottomTabNavigator";
 import RegisterScreen from "../authentication/RegisterScreen";
-import { Text, View } from "react-native";
 
 const Stack = createStackNavigator();
 

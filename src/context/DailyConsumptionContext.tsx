@@ -3,7 +3,6 @@ import { useAuth } from '../context/AuthContext';
 import { getTodayDate } from '../helpers/helpers';
 import { DailyConsumption } from '../class/dailyConsumption';
 import { getTodayConsumption } from '../services/DailyConsumptionService';
-import { Text } from 'react-native';
 
 interface DailyConsumptionContextProps {
   dailyConsumption: DailyConsumption | null;

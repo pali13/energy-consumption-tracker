@@ -7,7 +7,6 @@ import { useAuth } from '../context/AuthContext';
 import { TariffRequest } from '../class/tariffRequest';
 import { useTariff } from '../context/TariffContext';
 import Spinner from './elements/Spinner';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 type TariffKey = 'standard' | 'double' | 'triple';
 
